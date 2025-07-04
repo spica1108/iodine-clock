@@ -1,132 +1,152 @@
-/* src/App.css */
-@import url("https://fonts.googleapis.com/css2?family=Segoe+UI&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html,
+#root {
+  height: 100%;
+}
 
 .app {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  text-align: center;
-  min-height: 100vh;
-  padding: 2rem;
-  background: #fefefe;
-  color: #222;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  user-select: none;
+  transition: background 2s ease;
+  font-family: "Orbitron", sans-serif;
 }
 
-.reaction-zone {
-  position: relative;
-  width: 80vw;
-  height: 80vh;
-  max-width: 900px;
-  max-height: 700px;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  background: white;
-  overflow: visible;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.particle {
-  position: absolute;
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  color: white;
-  font-weight: 700;
-  font-size: 2.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.8),
-    inset 0 0 15px rgba(255, 255, 255, 0.9);
-  border: 3px solid rgba(255, 255, 255, 0.9);
-  user-select: none;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.io3 {
-  background: linear-gradient(145deg, #845ec2, #d39bff);
-  left: 30%;
-}
-
-.h2o2 {
-  background: linear-gradient(145deg, #00c2ff, #80e1ff);
-  left: 70%;
-}
-
-.i2 {
-  background: linear-gradient(145deg, #ffbe76, #ffc107);
-  left: 50%;
-}
-
-.bubble {
-  position: absolute;
-  bottom: 15%;
-  left: 50%;
-  width: 40px;
-  height: 40px;
-  background: rgba(200, 230, 255, 0.8);
-  border-radius: 50%;
-  box-shadow: 0 0 8px rgba(200, 230, 255, 0.7);
-  font-weight: 700;
-  color: #007acc;
-  line-height: 40px;
-  text-align: center;
-  user-select: none;
-  transform: translateX(-50%);
-  font-size: 1.2rem;
-}
-
-.starch-blue {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  font-weight: 700;
-  font-size: 2rem;
-  color: #1e40af;
-  text-shadow: 0 0 10px #3b82f6;
-}
-
-.clear-state {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  color: #444;
-  font-size: 1.8rem;
-  font-style: italic;
-}
-
-.equation {
-  margin-top: 3rem;
-  font-size: 1.8rem;
-  font-weight: 600;
-  color: #555;
-  user-select: none;
-}
-
-/* 不同阶段背景色渐变 */
 .app.reactants {
-  background: #f7f8fa;
+  background: linear-gradient(180deg, #e0f7fa, #b2ebf2);
 }
 
 .app.iodine-yellow {
-  background: #fff7d6;
-  transition: background-color 2s ease;
+  background: linear-gradient(180deg, #fff8e1, #ffe082);
 }
 
 .app.starch-blue {
-  background: #d6e6ff;
-  transition: background-color 2s ease;
+  background: linear-gradient(180deg, #e3f2fd, #90caf9);
 }
 
 .app.back-to-clear {
-  background: #fefefe;
-  transition: background-color 2s ease;
+  background: linear-gradient(180deg, #fafafa, #e0e0e0);
+}
+
+.title {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.reaction-zone {
+  width: 300px;
+  height: 420px;
+  background: rgba(255, 255, 255, 0.5);
+  border: 5px solid #444;
+  border-radius: 0 0 100px 100px;
+  box-shadow: inset 0 -10px 20px rgba(0, 0, 0, 0.2),
+    0 0 20px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 液体 */
+.liquid {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 0%;
+  transition: height 1.5s ease;
+  z-index: 0;
+}
+
+.liquid.iodine-yellow {
+  background: #ffeb3b;
+  height: 35%;
+}
+
+.liquid.starch-blue {
+  background: #1e88e5;
+  height: 60%;
+}
+
+.liquid.back-to-clear {
+  background: #fafafa;
+  height: 20%;
+}
+
+/* 冒泡 */
+.bubble {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #a3e0ff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  line-height: 40px;
+  text-align: center;
+  font-weight: bold;
+  color: #0077b6;
+  z-index: 2;
+}
+
+/* 烟雾 */
+.fog {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(#90caf9 20%, transparent 70%);
+  opacity: 0.3;
+  animation: fogMove 4s infinite ease-in-out;
+  z-index: 1;
+}
+
+@keyframes fogMove {
+  0% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+
+  50% {
+    transform: scale(1.1);
+    opacity: 0.4;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+}
+
+/* 粒子 */
+.particle {
+  position: absolute;
+  color: #000;
+  font-size: 1.4rem;
+  font-weight: bold;
+  z-index: 3;
+}
+
+.particle.blue {
+  color: #0d47a1;
+}
+
+/* 方程式 */
+.equation {
+  margin-top: 2rem;
+  font-size: 1.5rem;
+  color: #111;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  font-family: 'Orbitron', sans-serif;
 }
