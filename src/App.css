@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Segoe+UI&display=swap');
+
+.app {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  min-height: 100vh;
+  padding: 3rem;
+  background: #fefefe;
+  color: #222;
+  transition: background-color 2s ease;
+  user-select: none;
+}
+
+.app.reactants {
+  background: #f7f8fa;
+}
+
+.app.iodine-yellow {
+  background: #fff7d6;
+}
+
+.app.starch-blue {
+  background: #d6e6ff;
+}
+
+.app.back-to-clear {
+  background: #fefefe;
+}
+
+.reaction-zone {
+  margin: 4rem auto;
+  position: relative;
+  height: 220px;
+  max-width: 480px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+}
+
+.particle {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  color: white;
+  font-weight: 700;
+  font-size: 1.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow:
+    0 0 15px rgba(255, 255, 255, 0.7),
+    inset 0 0 10px rgba(255, 255, 255, 0.9);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  user-select: none;
+}
+
+.io3 {
+  background: linear-gradient(145deg, #845ec2, #d39bff);
+  left: 15%;
+  top: 50%;
+  transform: translateY(-50%);
+  box-shadow:
+    0 0 25px #b190f5,
+    inset 0 0 15px #e2ceff;
+}
+
+.h2o2 {
+  background: linear-gradient(145deg, #00c2ff, #80e1ff);
+  right: 15%;
+  top: 50%;
+  transform: translateY(-50%);
+  box-shadow:
+    0 0 25px #61dafb,
+    inset 0 0 15px #b3f0ff;
+}
+
+.i2 {
+  background: linear-gradient(145deg, #ffbe76, #ffc107);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow:
+    0 0 25px #ffd54f,
+    inset 0 0 15px #ffecb3;
+  font-size: 2rem;
+}
+
+.bubble {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  width: 28px;
+  height: 28px;
+  background: rgba(200, 230, 255, 0.8);
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(200, 230, 255, 0.7);
+  font-weight: 700;
+  color: #007acc;
+  line-height: 28px;
+  text-align: center;
+  user-select: none;
+}
+
+.starch-blue {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: 700;
+  font-size: 1.6rem;
+  color: #1e40af;
+  text-shadow: 0 0 6px #3b82f6;
+}
+
+.clear-state {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #444;
+  font-size: 1.5rem;
+  font-style: italic;
+}
+
+.equation {
+  margin-top: 3rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #555;
+  user-select: none;
+}
