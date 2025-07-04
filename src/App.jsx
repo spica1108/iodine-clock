@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react";
+// src/App.jsx
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import "./App.css";
 
 const stages = [
-  "reactants",  // IO3- + H2O2 → I- + O2 (冒泡)
-  "iodine-yellow", // I2 变黄
-  "starch-blue",  // 淀粉变蓝
-  "back-to-clear" // I2 + H2O2 → I-，颜色恢复透明
+  "reactants",
+  "iodine-yellow",
+  "starch-blue",
+  "back-to-clear"
 ];
 
 export default function App() {
@@ -14,8 +15,8 @@ export default function App() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setStageIndex((prev) => (prev + 1) % stages.length);
-    }, 6000); // 每6秒切换阶段
+      setStageIndex(prev => (prev + 1) % stages.length);
+    }, 6000);
     return () => clearInterval(interval);
   }, []);
 
@@ -54,7 +55,12 @@ export default function App() {
                 className="bubble"
                 initial={{ y: 20, opacity: 1 }}
                 animate={{ y: -80, opacity: 0 }}
-                transition={{ duration: 3, repeat: Infinity, repeatDelay: 1, ease: "linear" }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  repeatDelay: 1,
+                  ease: "linear"
+                }}
               >
                 O₂↑
               </motion.div>
