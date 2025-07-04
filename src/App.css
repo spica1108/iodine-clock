@@ -1,132 +1,155 @@
 /* src/App.css */
-@import url("https://fonts.googleapis.com/css2?family=Segoe+UI&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
 
 .app {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  text-align: center;
   min-height: 100vh;
-  padding: 2rem;
-  background: #fefefe;
-  color: #222;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  user-select: none;
+  text-align: center;
+  padding: 2rem;
+  transition: background-color 1s ease;
 }
 
-.reaction-zone {
+h1 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  font-size: 2.2rem;
+}
+
+h3 {
+  color: #7f8c8d;
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+
+.reaction-container {
   position: relative;
   width: 80vw;
-  height: 80vh;
-  max-width: 900px;
-  max-height: 700px;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  background: white;
-  overflow: visible;
+  height: 50vh;
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
-.particle {
+.chemical-particle {
   position: absolute;
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   color: white;
-  font-weight: 700;
-  font-size: 2.5rem;
+  font-weight: bold;
+  font-size: 1.8rem;
   display: flex;
-  justify-content: center;
   align-items: center;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.8),
-    inset 0 0 15px rgba(255, 255, 255, 0.9);
-  border: 3px solid rgba(255, 255, 255, 0.9);
-  user-select: none;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1),
+    inset 0 0 10px rgba(255, 255, 255, 0.8);
+  z-index: 10;
 }
 
 .io3 {
-  background: linear-gradient(145deg, #845ec2, #d39bff);
-  left: 30%;
+  background: linear-gradient(135deg, #845ec2, #d65db1);
+  left: 25%;
 }
 
 .h2o2 {
-  background: linear-gradient(145deg, #00c2ff, #80e1ff);
-  left: 70%;
+  background: linear-gradient(135deg, #00c9ff, #92fe9d);
+  left: 75%;
 }
 
 .i2 {
-  background: linear-gradient(145deg, #ffbe76, #ffc107);
-  left: 50%;
+  background: linear-gradient(135deg, #ff9671, #ffc75f);
 }
 
 .bubble {
   position: absolute;
-  bottom: 15%;
-  left: 50%;
-  width: 40px;
-  height: 40px;
-  background: rgba(200, 230, 255, 0.8);
+  width: 30px;
+  height: 30px;
+  background: rgba(200, 230, 255, 0.9);
   border-radius: 50%;
-  box-shadow: 0 0 8px rgba(200, 230, 255, 0.7);
-  font-weight: 700;
-  color: #007acc;
-  line-height: 40px;
-  text-align: center;
-  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #2980b9;
+  bottom: 10%;
+  left: 50%;
   transform: translateX(-50%);
-  font-size: 1.2rem;
+  z-index: 5;
 }
 
-.starch-blue {
+.starch-complex,
+.clear-solution {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  font-weight: 700;
-  font-size: 2rem;
-  color: #1e40af;
-  text-shadow: 0 0 10px #3b82f6;
-}
-
-.clear-state {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  color: #444;
   font-size: 1.8rem;
+  font-weight: bold;
+  text-align: center;
+  z-index: 20;
+}
+
+.starch-complex {
+  color: #1e3799;
+  text-shadow: 0 2px 4px rgba(30, 55, 153, 0.2);
+}
+
+.clear-solution {
+  color: #7f8c8d;
   font-style: italic;
 }
 
-.equation {
-  margin-top: 3rem;
-  font-size: 1.8rem;
+.chemical-equation {
+  margin-top: 1.5rem;
+  padding: 1rem 2rem;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  font-size: 1.5rem;
   font-weight: 600;
-  color: #555;
-  user-select: none;
+  color: #2c3e50;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-/* 不同阶段背景色渐变 */
-.app.reactants {
-  background: #f7f8fa;
-}
+/* 响应式设计 */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.8rem;
+  }
 
-.app.iodine-yellow {
-  background: #fff7d6;
-  transition: background-color 2s ease;
-}
+  h3 {
+    font-size: 1.1rem;
+  }
 
-.app.starch-blue {
-  background: #d6e6ff;
-  transition: background-color 2s ease;
-}
+  .reaction-container {
+    width: 90vw;
+    height: 40vh;
+  }
 
-.app.back-to-clear {
-  background: #fefefe;
-  transition: background-color 2s ease;
+  .chemical-particle {
+    width: 80px;
+    height: 80px;
+    font-size: 1.5rem;
+  }
+
+  .chemical-equation {
+    font-size: 1.2rem;
+    padding: 0.8rem 1.5rem;
+  }
 }
