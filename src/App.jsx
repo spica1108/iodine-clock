@@ -1,96 +1,101 @@
 import React, { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import "./App.css";
 
-const stages = ["reactants", "iodine-yellow", "starch-blue", "back-to-clear"];
+const stages = [
+  {
+    key: "reactants",
+    color: "#b2ebf2",
+    equation: "IO₃⁻ + H₂O₂ → I⁻ + O₂↑",
+  },
+  {
+    key: "iodine-yellow",
+    color: "#fff176",
+    equation: "I⁻ + IO₃⁻ → I₂（黄色）",
+  },
+  {
+    key: "starch-blue",
+    color: "#42a5f5",
+    equation: "I₂ + 淀粉 → 蓝色复合物",
+  },
+  {
+    key: "back-to-clear",
+    color: "#f5f5f5",
+    equation: "I₂ + H₂O₂ → I⁻，恢复无色",
+  },
+];
 
 export default function App() {
   const [stageIndex, setStageIndex] = useState(0);
   const stage = stages[stageIndex];
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setStageIndex((prev) => (prev + 1) % stages.length);
-    }, 6000);
-    return () => clearInterval(interval);
+    const timer = setInterval(() => {
+      setStageIndex((i) => (i + 1) % stages.length);
+    }, 5000);
+    return () => clearInterval(timer);
   }, []);
 
   return (
-    <div className={`app ${stage}`}>
-      <h1 className="title">碘钟反应动态演示</h1>
+    <div className="app">
+      <div className="background" />
 
-      <div className="reaction-zone">
-        {/* 冒泡效果 */}
-        {stage === "reactants" && (
-          <motion.div
+      <div className="beaker-container">
+        <svg
+          viewBox="0 0 200 280"
+          xmlns="http://www.w3.org/2000/svg"
+          className="beaker-svg"
+        >
+          {/* 烧杯轮廓 */}
+          <path
+            className="beaker-glass"
+            d="M50 10 L50 240 Q50 260 70 260 L130 260 Q150 260 150 240 L150 10 Z"
+            fill="none"
+            stroke="#555"
+            strokeWidth="4"
+          />
+          {/* 倒水口 */}
+          <path
+            className="beaker-spout"
+            d="M50 10 Q40 15 50 20"
+            fill="none"
+            stroke="#555"
+            strokeWidth="3"
+            strokeLinecap="round"
+          />
+          {/* 内部颜色层 */}
+          <rect
+            x="54"
+            y="15"
+            width="92"
+            height="220"
+            rx="10"
+            ry="10"
+            fill={stage.color}
+            opacity="0.6"
+          />
+          {/* 冒泡 */}
+          <circle
             className="bubble"
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: -100, opacity: 1 }}
-            transition={{
-              repeat: Infinity,
-              duration: 3,
-              ease: "linear",
-              repeatDelay: 1,
-            }}
-          >
-            O₂↑
-          </motion.div>
-        )}
-
-        {/* 液体效果 */}
-        <div className={`liquid ${stage}`} />
-
-        {/* 烟雾效果 */}
-        {stage === "starch-blue" && <div className="fog" />}
-
-        <AnimatePresence mode="wait">
-          {stage === "iodine-yellow" && (
-            <motion.div
-              key="i2"
-              className="particle"
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0 }}
-              transition={{ duration: 2 }}
-            >
-              I₂
-            </motion.div>
-          )}
-
-          {stage === "starch-blue" && (
-            <motion.div
-              key="blue"
-              className="particle blue"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 2 }}
-            >
-              蓝色复合物
-            </motion.div>
-          )}
-
-          {stage === "back-to-clear" && (
-            <motion.div
-              key="clear"
-              className="particle"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 2 }}
-            >
-              无色透明
-            </motion.div>
-          )}
-        </AnimatePresence>
+            cx="100"
+            cy="240"
+            r="8"
+            fill="#a3e0ff"
+            opacity="0.8"
+          />
+          <circle
+            className="bubble bubble-delay"
+            cx="120"
+            cy="250"
+            r="6"
+            fill="#81d4fa"
+            opacity="0.8"
+          />
+        </svg>
+        {/* 蓝色烟雾 */}
+        {stage.key === "starch-blue" && <div className="fog" />}
       </div>
 
-      <div className="equation">
-        {stage === "reactants" && "IO₃⁻ + H₂O₂ → I⁻ + O₂↑"}
-        {stage === "iodine-yellow" && "I⁻ + IO₃⁻ → I₂（黄色）"}
-        {stage === "starch-blue" && "I₂ + 淀粉 → 蓝色复合物"}
-        {stage === "back-to-clear" && "I₂ + H₂O₂ → I⁻，恢复无色"}
-      </div>
+      <div className="equation">{stage.equation}</div>
     </div>
   );
 }
